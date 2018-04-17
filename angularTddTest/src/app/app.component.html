@@ -1,0 +1,67 @@
+<div class="container">
+  <h1>{{title}}</h1>
+  <br>
+  <div class="row">
+    <div class="col-sm-6">
+      <input type="text" placeholder="Filter By Id" class="form-control col-xl-6" (change)="filterById($event)" />
+    </div>
+    <div class="col-sm-6">
+      <select class="form-control">
+        <option value="5"> 5 </option>
+        <option value="10"> 10 </option>
+        <option value="15"> 15 </option>
+      </select>
+    </div>
+  </div>
+
+  <br>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr class="success">
+        <th (click)="sortableById()">
+          <i class="fa fa-fw fa-sort"></i>Id</th>
+        <th (click)="sortableByTitle()">
+          <i class="fa fa-fw fa-sort"></i>Title</th>
+        <th>Icon</th>
+        <th>Description</th>
+        <th>Details</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngIf="languages.length == 0">
+        Sorry No Data Found
+      </tr>
+      <tr *ngFor="let language of languages">
+        <td>{{language.id}}</td>
+        <td>{{language.title}}</td>
+        <td>
+          <img class="languageIcon" src='{{ "../assets/" + language.icon}}'> </td>
+        <td>{{language.description}}</td>
+        <td>
+          <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" (click)="viewItem(language.id)">
+            <span class="glyphicon glyphicon-eye-open"></span>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div *ngIf="load" class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title"> Language Details </h4>
+        </div>
+        <div class="modal-body">
+          <p> Title : {{language.title}} </p>
+          <p> Description : {{language.description}} </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
