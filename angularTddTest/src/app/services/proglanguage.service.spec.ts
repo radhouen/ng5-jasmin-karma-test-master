@@ -22,7 +22,7 @@ describe('ProglanguagesService', () => {
         TestBed.configureTestingModule({
           imports: [HttpModule],
           providers: [
-            { provide: '', useValue: 'http://example.com' },
+            { provide: '', useValue: 'https://my-json-server.typicode.com/radhouen/fakeApi/progLanguages' },
             ProglanguageService,
             { provide: XHRBackend, useClass: MockBackend },
           ]
@@ -49,7 +49,7 @@ describe('ProglanguagesService', () => {
     expect(service.getProgLanguagesByName).toBeTruthy();
   }));
   describe('getProgLanguages()', () => {
-     it('should return an Observable<Array<Languages>>',
+     it('should return an Observable<any<Languages>>',
             inject([ProglanguageService, XHRBackend], (proglanguageService, mockBackend) => {
       const mockResponse = {
               data: [
